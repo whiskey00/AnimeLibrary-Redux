@@ -2,11 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    anime: [
-        {id: 1, title: "Naruto"},
-        {id: 2, title: "One Piece"},
-        {id: 3, title: "Attack on Titan"}
-    ],
+    anime: [],
 
 };
 export const animeSlice = createSlice({
@@ -15,8 +11,9 @@ export const animeSlice = createSlice({
     reducers: {
         addFavoriteAnime: (state, action) => {
             const newAnime = {
-                id: state.anime[state.anime.length - 1] + 1,
-                title: action.payload,
+                id: state.anime.length === 0 ? 1 : state.anime[state.anime.length - 1].id + 1,
+                title: action.payload.title,
+                image: action.payload.image,
             }
             state.anime.push(newAnime);
         },
